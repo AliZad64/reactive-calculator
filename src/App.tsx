@@ -58,7 +58,7 @@ export default function App() {
                     src="./icon.svg"
                     alt="Logo"
                   />{" "}
-                  Reactive Calculator
+                  Fei Calculator
                 </Title>
                 <Group position="center" my={30}>
                   <Switch
