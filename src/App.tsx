@@ -14,6 +14,7 @@ import {
 import { useLocalStorage } from "@mantine/hooks";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 import Calculator from "./components/Calculator";
+import "../styles/style.css"
 
 export default function App() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
