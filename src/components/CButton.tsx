@@ -45,7 +45,11 @@ function CButton({ text }: { text: string }) {
   };
   const updateResult = (equation: string): void => {
     try {
-      const result = eval(equation);
+      let result = eval(equation);
+      //if its highter than 3 decimals, round it
+      if (result.toString().split(".")[1]?.length > 3) {
+        result = Math.round(result * 1000) / 1000;
+      } 
       updateSecondValue(String(result));
     } catch {}
   };
