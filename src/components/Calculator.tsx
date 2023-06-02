@@ -7,7 +7,10 @@ const Calculator = () => {
     <Container w={300} mx="auto">
       <Grid gutter={1.14}>
         <Grid.Col span={12}>
-          <CView />
+          <CView size="24" px="3" mode="true" position="left" />
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <CView size="48" px="5" mode="false" position="right" />
         </Grid.Col>
         <Grid.Col span={4}>
           <CButton text="7.2" />
@@ -22,10 +25,10 @@ const Calculator = () => {
           <CButton text="3.2" />
         </Grid.Col>
         <Grid.Col span={4}>
-          <CButton text="2.2" />
+          <CButton text="2.7" />
         </Grid.Col>
         <Grid.Col span={4}>
-          <CButton text="AC" />
+          <CButton text="2.2" />
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="7" />
@@ -63,7 +66,10 @@ const Calculator = () => {
         <Grid.Col span={3}>
           <CButton text="+" />
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={3}>
+          <CButton text="AC" />
+        </Grid.Col>
+        <Grid.Col span={3}>
           <CButton text="0" />
         </Grid.Col>
         <Grid.Col span={3}>

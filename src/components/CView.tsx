@@ -1,18 +1,18 @@
 import { Text } from "@mantine/core";
 import { useCalculatorStore } from "../store";
 
-function CView() {
+function CView( { size, px, mode, position } : { size: string, px: string, mode: string, position: string } ) {
   const firstValue = useCalculatorStore((state) => state.firstValue);
-  const mode = useCalculatorStore((state) => state.mode);
   const secondValue = useCalculatorStore((state) => state.secondValue);
+  const check = (mode === "true" ? true : false)
   return (
     <Text
       title="CView"
       truncate
-      ta="right"
-      size={48}
-      px={5}
-      lineClamp={1}
+      ta = {position === "left" ? "left" : "right"}
+      size={parseInt(size)}
+      px={parseFloat(px)}
+      lineClamp={2}
       sx={(theme) => ({
         backgroundColor:
           theme.colorScheme === "dark"
@@ -26,7 +26,7 @@ function CView() {
         borderRadius: 2,
       })}
     >
-      {mode ? firstValue : secondValue}
+      {check ? firstValue : secondValue}
     </Text>
   );
 }

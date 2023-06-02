@@ -57,6 +57,16 @@ function CButton({ text }: { text: string }) {
       updateOperator(theoperator);
     }
   };
+  const updateResult = (equation: string): void => {
+  try {
+    const result = eval(equation);
+    updateSecondValue(String(result));
+  }
+  catch {
+
+  }
+  }
+
   const clickHandler = () => {
     switch (text) {
       case "1":
@@ -69,31 +79,15 @@ function CButton({ text }: { text: string }) {
       case "8":
       case "9":
       case "0":
-        operator === null
-          ? updateFirstValue((firstValue === "0" ? "" : firstValue) + text)
-          : updateSecondValue((secondValue === "0" ? "" : secondValue) + text);
-        break;
       case "7.2":
       case "6.8":
       case "3.5":
       case "3.2":
       case "2.2":
-        operator === null
-          ? updateFirstValue(
-              firstValue.includes(text) ? firstValue : text
-            )
-          : updateSecondValue(
-              secondValue.includes(text) ? secondValue :  text
-            );
-        break;
+      case "-":
+      case "+":
       case ".":
-        operator === null
-          ? updateFirstValue(
-              firstValue.includes(text) ? firstValue : firstValue + text
-            )
-          : updateSecondValue(
-              secondValue.includes(text) ? secondValue : secondValue + text
-            );
+        updateFirstValue((firstValue === "0" ? "" : firstValue) + text);
         break;
       case "+/-":
         operator === null
@@ -118,21 +112,10 @@ function CButton({ text }: { text: string }) {
       }
       case "/":
       case "*":
-      case "-":
-      case "+":
         operatorHandler(text);
         break;
       case "=": {
-        const secondV = secondValue;
-        updateSecondValue("0");
-        updateOperator(null);
-        blinkHandler(
-          equalityHandler(
-            parseFloat(firstValue),
-            parseFloat(secondV),
-            operator
-          ).toString()
-        );
+        updateResult(firstValue);
         break;
       }
       case "Del": {
