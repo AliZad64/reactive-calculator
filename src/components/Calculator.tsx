@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mantine/core";
+import { Container, Grid, ScrollArea, Box} from "@mantine/core";
 import CButton from "./CButton";
 import CView from "./CView";
 
@@ -7,7 +7,11 @@ const Calculator = () => {
     <Container w={300} mx="auto">
       <Grid gutter={1.14}>
         <Grid.Col span={12}>
-          <CView size="24" px="3" mode="true" position="left" />
+          <ScrollArea >
+            <Box>
+            <CView size="24" px="3" mode="true" position="left" />
+            </Box>
+          </ScrollArea>
         </Grid.Col>
         <Grid.Col span={12}>
           <CView size="48" px="5" mode="false" position="right" />
