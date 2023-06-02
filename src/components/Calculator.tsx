@@ -40,7 +40,7 @@ const Calculator = () => {
           <CButton text="9" />
         </Grid.Col>
         <Grid.Col span={3}>
-          <CButton text="Del" />
+          <CButton text="AC" />
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="4" />
@@ -52,7 +52,7 @@ const Calculator = () => {
           <CButton text="6" />
         </Grid.Col>
         <Grid.Col span={3}>
-          <CButton text="-" />
+          <CButton text="Del" />
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="1" />
@@ -64,10 +64,7 @@ const Calculator = () => {
           <CButton text="3" />
         </Grid.Col>
         <Grid.Col span={3}>
-          <CButton text="+" />
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <CButton text="AC" />
+          <CButton text="-" />
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="0" />
@@ -77,6 +74,9 @@ const Calculator = () => {
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="=" />
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <CButton text="+" />
         </Grid.Col>
       </Grid>
     </Container>
