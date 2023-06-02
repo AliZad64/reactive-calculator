@@ -37,7 +37,7 @@ const Calculator = () => {
           <CButton text="9" />
         </Grid.Col>
         <Grid.Col span={3}>
-          <CButton text="*" />
+          <CButton text="Del" />
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="4" />

@@ -135,6 +135,16 @@ function CButton({ text }: { text: string }) {
         );
         break;
       }
+      case "Del": {
+        operator === null
+          ? updateFirstValue(
+            firstValue.length > 1 ? firstValue.slice(0, -1) : "0"
+          )
+          : updateSecondValue(
+            secondValue.length > 1 ? secondValue.slice(0, -1) : "0"
+          );
+        break;
+      }
       default: // AC button
         updateSecondValue("0");
         updateOperator(null);
