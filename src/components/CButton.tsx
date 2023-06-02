@@ -3,13 +3,9 @@ import { useCalculatorStore } from "../store";
 
 function CButton({ text }: { text: string }) {
   const firstValue = useCalculatorStore((state) => state.firstValue);
-  const updateFirstValue = useCalculatorStore(
-    (state) => state.updateFirstValue
-  );
+  const updateFirstValue = useCalculatorStore((state) => state.updateFirstValue);
   const secondValue = useCalculatorStore((state) => state.secondValue);
-  const updateSecondValue = useCalculatorStore(
-    (state) => state.updateSecondValue
-  );
+  const updateSecondValue = useCalculatorStore((state) => state.updateSecondValue);
   const operator = useCalculatorStore((state) => state.operator);
   const updateOperator = useCalculatorStore((state) => state.updateOperator);
   const mode = useCalculatorStore((state) => state.mode);
@@ -20,11 +16,7 @@ function CButton({ text }: { text: string }) {
       setTimeout(() => updateFirstValue(preV ?? firstValue), 100);
     } else updateFirstValue(preV ?? firstValue);
   };
-  const equalityHandler = (
-    first: number,
-    second: number,
-    operator: string | null
-  ): number => {
+  const equalityHandler = (first: number, second: number, operator: string | null): number => {
     if (operator !== null) {
       switch (operator) {
         case "+":
@@ -44,13 +36,7 @@ function CButton({ text }: { text: string }) {
     if (firstValue !== "0" && secondValue !== "0" && operator !== null) {
       const secondV = secondValue;
       updateSecondValue("0");
-      blinkHandler(
-        equalityHandler(
-          parseFloat(firstValue),
-          parseFloat(secondV),
-          operator
-        ).toString()
-      );
+      blinkHandler(equalityHandler(parseFloat(firstValue), parseFloat(secondV), operator).toString());
       updateOperator(theoperator);
     } else {
       blinkHandler();
@@ -58,16 +44,13 @@ function CButton({ text }: { text: string }) {
     }
   };
   const updateResult = (equation: string): void => {
-  try {
-    const result = eval(equation);
-    updateSecondValue(String(result));
-  }
-  catch {
+    try {
+      const result = eval(equation);
+      updateSecondValue(String(result));
+    } catch {}
+  };
 
-  }
-  }
-
-  const clickHandler = () => {
+  const clickHandler = async () => {
     switch (text) {
       case "1":
       case "2":
@@ -83,7 +66,8 @@ function CButton({ text }: { text: string }) {
       case "6.8":
       case "3.5":
       case "3.2":
-      case "2.2":
+      case "2.5":
+      case "1.7":
       case "-":
       case "+":
       case ".":
@@ -91,23 +75,13 @@ function CButton({ text }: { text: string }) {
         break;
       case "+/-":
         operator === null
-          ? updateFirstValue(
-              firstValue.includes("-")
-                ? firstValue.replace("-", "")
-                : "-" + firstValue
-            )
-          : updateSecondValue(
-              secondValue.includes("-")
-                ? secondValue.replace("-", "")
-                : "-" + secondValue
-            );
+          ? updateFirstValue(firstValue.includes("-") ? firstValue.replace("-", "") : "-" + firstValue)
+          : updateSecondValue(secondValue.includes("-") ? secondValue.replace("-", "") : "-" + secondValue);
         break;
       case "%": {
         const val = mode ? parseFloat(firstValue) : parseFloat(secondValue);
         const result = val === 0 ? val : val / 100;
-        mode
-          ? updateFirstValue(result.toString())
-          : updateSecondValue(result.toString());
+        mode ? updateFirstValue(result.toString()) : updateSecondValue(result.toString());
         break;
       }
       case "/":
@@ -120,12 +94,8 @@ function CButton({ text }: { text: string }) {
       }
       case "Del": {
         operator === null
-          ? updateFirstValue(
-            firstValue.length > 1 ? firstValue.slice(0, -1) : "0"
-          )
-          : updateSecondValue(
-            secondValue.length > 1 ? secondValue.slice(0, -1) : "0"
-          );
+          ? updateFirstValue(firstValue.length > 1 ? firstValue.slice(0, -1) : "0")
+          : updateSecondValue(secondValue.length > 1 ? secondValue.slice(0, -1) : "0");
         break;
       }
       default: // AC button
@@ -138,14 +108,8 @@ function CButton({ text }: { text: string }) {
     <Text
       fw={700}
       sx={(theme) => ({
-        backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[5]
-            : theme.colors.gray[3],
-        color:
-          theme.colorScheme === "dark"
-            ? theme.colors.gray[5]
-            : theme.colors.gray[9],
+        backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[3],
+        color: theme.colorScheme === "dark" ? theme.colors.gray[5] : theme.colors.gray[9],
         fontSize: 24,
         height: 70,
         borderRadius: 2,
