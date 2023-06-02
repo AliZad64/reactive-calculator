@@ -73,6 +73,19 @@ function CButton({ text }: { text: string }) {
           ? updateFirstValue((firstValue === "0" ? "" : firstValue) + text)
           : updateSecondValue((secondValue === "0" ? "" : secondValue) + text);
         break;
+      case "7.2":
+      case "6.8":
+      case "3.5":
+      case "3.2":
+      case "2.2":
+        operator === null
+          ? updateFirstValue(
+              firstValue.includes(text) ? firstValue : text
+            )
+          : updateSecondValue(
+              secondValue.includes(text) ? secondValue :  text
+            );
+        break;
       case ".":
         operator === null
           ? updateFirstValue(

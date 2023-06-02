@@ -9,17 +9,23 @@ const Calculator = () => {
         <Grid.Col span={12}>
           <CView />
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={4}>
+          <CButton text="7.2" />
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <CButton text="6.8" />
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <CButton text="3.5" />
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <CButton text="3.2" />
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <CButton text="2.2" />
+        </Grid.Col>
+        <Grid.Col span={4}>
           <CButton text="AC" />
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <CButton text="+/-" />
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <CButton text="%" />
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <CButton text="/" />
         </Grid.Col>
         <Grid.Col span={3}>
           <CButton text="7" />
