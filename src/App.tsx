@@ -40,7 +40,6 @@ export default function App() {
             <Header height={56}>
               <Center
                 h={56}
-                mx="auto"
                 sx={{ display: "flex", justifyContent: "space-around" }}
               >
                 <Title

@@ -4,44 +4,14 @@ import { useCalculatorStore } from "../store";
 function CButton({ text }: { text: string }) {
   const firstValue = useCalculatorStore((state) => state.firstValue);
   const updateFirstValue = useCalculatorStore((state) => state.updateFirstValue);
-  const secondValue = useCalculatorStore((state) => state.secondValue);
   const updateSecondValue = useCalculatorStore((state) => state.updateSecondValue);
-  const operator = useCalculatorStore((state) => state.operator);
-  const updateOperator = useCalculatorStore((state) => state.updateOperator);
-  const mode = useCalculatorStore((state) => state.mode);
   const blink = useCalculatorStore((state) => state.blink);
+
   const blinkHandler = (preV?: string) => {
     if (blink) {
       updateFirstValue("");
       setTimeout(() => updateFirstValue(preV ?? firstValue), 100);
     } else updateFirstValue(preV ?? firstValue);
-  };
-  const equalityHandler = (first: number, second: number, operator: string | null): number => {
-    if (operator !== null) {
-      switch (operator) {
-        case "+":
-          return first + second;
-        case "-":
-          return first - second;
-        case "*":
-          return first * second;
-        case "/":
-          return first / second;
-        default:
-          return 0;
-      }
-    } else return first;
-  };
-  const operatorHandler = (theoperator: string | null): void => {
-    if (firstValue !== "0" && secondValue !== "0" && operator !== null) {
-      const secondV = secondValue;
-      updateSecondValue("0");
-      blinkHandler(equalityHandler(parseFloat(firstValue), parseFloat(secondV), operator).toString());
-      updateOperator(theoperator);
-    } else {
-      blinkHandler();
-      updateOperator(theoperator);
-    }
   };
   const updateResult = (equation: string): void => {
     try {
@@ -76,34 +46,19 @@ function CButton({ text }: { text: string }) {
       case ".":
         updateFirstValue((firstValue === "0" ? "" : firstValue) + text);
         break;
-      case "+/-":
-        operator === null
-          ? updateFirstValue(firstValue.includes("-") ? firstValue.replace("-", "") : "-" + firstValue)
-          : updateSecondValue(secondValue.includes("-") ? secondValue.replace("-", "") : "-" + secondValue);
-        break;
-      case "%": {
-        const val = mode ? parseFloat(firstValue) : parseFloat(secondValue);
-        const result = val === 0 ? val : val / 100;
-        mode ? updateFirstValue(result.toString()) : updateSecondValue(result.toString());
-        break;
-      }
-      case "/":
-      case "*":
-        operatorHandler(text);
-        break;
+
       case "=": {
         updateResult(firstValue);
         break;
       }
+
       case "Del": {
-        operator === null
-          ? updateFirstValue(firstValue.length > 1 ? firstValue.slice(0, -1) : "0")
-          : updateSecondValue(secondValue.length > 1 ? secondValue.slice(0, -1) : "0");
+        updateFirstValue(firstValue.length > 1 ? firstValue.slice(0, -1) : "0");
         break;
       }
+
       default: // AC button
         updateSecondValue("0");
-        updateOperator(null);
         blinkHandler("0");
     }
   };
